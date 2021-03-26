@@ -7,14 +7,17 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		743B5E2B260E768100504DAA /* ProductsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 743B5E2A260E768100504DAA /* ProductsTableViewCell.swift */; };
+		743B5E30260E76C900504DAA /* Product.swift in Sources */ = {isa = PBXBuildFile; fileRef = 743B5E2F260E76C900504DAA /* Product.swift */; };
 		74426C08260DF72600300386 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74426C07260DF72600300386 /* AppDelegate.swift */; };
 		74426C0A260DF72600300386 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74426C09260DF72600300386 /* SceneDelegate.swift */; };
-		74426C0C260DF72600300386 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74426C0B260DF72600300386 /* ViewController.swift */; };
+		74426C0C260DF72600300386 /* ProductsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74426C0B260DF72600300386 /* ProductsViewController.swift */; };
 		74426C0F260DF72600300386 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 74426C0D260DF72600300386 /* Main.storyboard */; };
 		74426C11260DF72A00300386 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 74426C10260DF72A00300386 /* Assets.xcassets */; };
 		74426C14260DF72A00300386 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 74426C12260DF72A00300386 /* LaunchScreen.storyboard */; };
 		74426C1F260DF72B00300386 /* AdidasCodingChallengeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74426C1E260DF72B00300386 /* AdidasCodingChallengeTests.swift */; };
 		74426C2A260DF72B00300386 /* AdidasCodingChallengeUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74426C29260DF72B00300386 /* AdidasCodingChallengeUITests.swift */; };
+		74426C41260E752400300386 /* ProductDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74426C40260E752400300386 /* ProductDetailViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -35,10 +38,12 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		743B5E2A260E768100504DAA /* ProductsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductsTableViewCell.swift; sourceTree = "<group>"; };
+		743B5E2F260E76C900504DAA /* Product.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Product.swift; sourceTree = "<group>"; };
 		74426C04260DF72600300386 /* AdidasCodingChallenge.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AdidasCodingChallenge.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		74426C07260DF72600300386 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		74426C09260DF72600300386 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		74426C0B260DF72600300386 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		74426C0B260DF72600300386 /* ProductsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductsViewController.swift; sourceTree = "<group>"; };
 		74426C0E260DF72600300386 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		74426C10260DF72A00300386 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		74426C13260DF72A00300386 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -49,6 +54,7 @@
 		74426C25260DF72B00300386 /* AdidasCodingChallengeUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = AdidasCodingChallengeUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		74426C29260DF72B00300386 /* AdidasCodingChallengeUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdidasCodingChallengeUITests.swift; sourceTree = "<group>"; };
 		74426C2B260DF72B00300386 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		74426C40260E752400300386 /* ProductDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductDetailViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -101,11 +107,14 @@
 			children = (
 				74426C07260DF72600300386 /* AppDelegate.swift */,
 				74426C09260DF72600300386 /* SceneDelegate.swift */,
-				74426C0B260DF72600300386 /* ViewController.swift */,
+				74426C0B260DF72600300386 /* ProductsViewController.swift */,
 				74426C0D260DF72600300386 /* Main.storyboard */,
 				74426C10260DF72A00300386 /* Assets.xcassets */,
 				74426C12260DF72A00300386 /* LaunchScreen.storyboard */,
 				74426C15260DF72A00300386 /* Info.plist */,
+				74426C40260E752400300386 /* ProductDetailViewController.swift */,
+				743B5E2A260E768100504DAA /* ProductsTableViewCell.swift */,
+				743B5E2F260E76C900504DAA /* Product.swift */,
 			);
 			path = AdidasCodingChallenge;
 			sourceTree = "<group>";
@@ -258,9 +267,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				74426C0C260DF72600300386 /* ViewController.swift in Sources */,
+				74426C0C260DF72600300386 /* ProductsViewController.swift in Sources */,
+				743B5E2B260E768100504DAA /* ProductsTableViewCell.swift in Sources */,
+				74426C41260E752400300386 /* ProductDetailViewController.swift in Sources */,
 				74426C08260DF72600300386 /* AppDelegate.swift in Sources */,
 				74426C0A260DF72600300386 /* SceneDelegate.swift in Sources */,
+				743B5E30260E76C900504DAA /* Product.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
