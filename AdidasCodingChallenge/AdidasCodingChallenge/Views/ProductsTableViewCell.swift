@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import Kingfisher
 
 class ProductsTableViewCell: UITableViewCell {
     @IBOutlet weak var productImage: UIImageView!
@@ -20,13 +21,16 @@ class ProductsTableViewCell: UITableViewCell {
     }
     
     func configure(product: Product) {
-        // configure model
+        
+        productImage.kf.setImage(with: URL(string: product.imgUrl ?? ""))
+        productDescription.text = product.description
+        productName.text = product.name
+        productPrice.text = String(product.price ?? 0.0)
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
 
-        // Configure the view for the selected state
     }
 
 }

@@ -1,0 +1,6 @@
+framework module Pods_AdidasCodingChallenge_AdidasCodingChallengeUITests {
+  umbrella header "Pods-AdidasCodingChallenge-AdidasCodingChallengeUITests-umbrella.h"
+
+  export *
+  module * { export * }
+}
