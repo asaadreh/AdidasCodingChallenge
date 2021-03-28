@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		2D4ECDDB926F932B9092CCAC /* Pods_AdidasCodingChallengeTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 75BCA5EA369DBEAE23416DC4 /* Pods_AdidasCodingChallengeTests.framework */; };
 		397C6795862C0C1208D3D95C /* Pods_AdidasCodingChallenge_AdidasCodingChallengeUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A71D8BA6B172E76CA47BBD3A /* Pods_AdidasCodingChallenge_AdidasCodingChallengeUITests.framework */; };
+		740AC630260F9D9D002506FE /* ReviewViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 740AC62F260F9D9D002506FE /* ReviewViewModel.swift */; };
 		743B5E2B260E768100504DAA /* ProductsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 743B5E2A260E768100504DAA /* ProductsTableViewCell.swift */; };
 		743B5E30260E76C900504DAA /* Product.swift in Sources */ = {isa = PBXBuildFile; fileRef = 743B5E2F260E76C900504DAA /* Product.swift */; };
 		743B5E35260EFB2800504DAA /* ProductService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 743B5E34260EFB2800504DAA /* ProductService.swift */; };
@@ -17,6 +18,9 @@
 		743B5E49260F17CF00504DAA /* ProductServiceAdapter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 743B5E48260F17CF00504DAA /* ProductServiceAdapter.swift */; };
 		743B5E63260F22B800504DAA /* ProductDetailTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 743B5E62260F22B800504DAA /* ProductDetailTableViewCell.swift */; };
 		743B5E6B260F24CD00504DAA /* ReviewTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 743B5E6A260F24CD00504DAA /* ReviewTableViewCell.swift */; };
+		743B5E7A260F4F3C00504DAA /* ReviewService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 743B5E79260F4F3C00504DAA /* ReviewService.swift */; };
+		743B5E82260F522000504DAA /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 743B5E81260F522000504DAA /* Extensions.swift */; };
+		743B5E8F260F5AE700504DAA /* ReviewViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 743B5E8E260F5AE600504DAA /* ReviewViewController.swift */; };
 		74426C08260DF72600300386 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74426C07260DF72600300386 /* AppDelegate.swift */; };
 		74426C0A260DF72600300386 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74426C09260DF72600300386 /* SceneDelegate.swift */; };
 		74426C0C260DF72600300386 /* ProductsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74426C0B260DF72600300386 /* ProductsViewController.swift */; };
@@ -48,6 +52,7 @@
 
 /* Begin PBXFileReference section */
 		50534A56DA75E2BE8134EB34 /* Pods_AdidasCodingChallenge.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_AdidasCodingChallenge.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		740AC62F260F9D9D002506FE /* ReviewViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewViewModel.swift; sourceTree = "<group>"; };
 		743B5E2A260E768100504DAA /* ProductsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductsTableViewCell.swift; sourceTree = "<group>"; };
 		743B5E2F260E76C900504DAA /* Product.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Product.swift; sourceTree = "<group>"; };
 		743B5E34260EFB2800504DAA /* ProductService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductService.swift; sourceTree = "<group>"; };
@@ -56,6 +61,9 @@
 		743B5E48260F17CF00504DAA /* ProductServiceAdapter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductServiceAdapter.swift; sourceTree = "<group>"; };
 		743B5E62260F22B800504DAA /* ProductDetailTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductDetailTableViewCell.swift; sourceTree = "<group>"; };
 		743B5E6A260F24CD00504DAA /* ReviewTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewTableViewCell.swift; sourceTree = "<group>"; };
+		743B5E79260F4F3C00504DAA /* ReviewService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewService.swift; sourceTree = "<group>"; };
+		743B5E81260F522000504DAA /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
+		743B5E8E260F5AE600504DAA /* ReviewViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewViewController.swift; sourceTree = "<group>"; };
 		74426C04260DF72600300386 /* AdidasCodingChallenge.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AdidasCodingChallenge.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		74426C07260DF72600300386 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		74426C09260DF72600300386 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -122,6 +130,15 @@
 			path = Pods;
 			sourceTree = "<group>";
 		};
+		740AC62E260F9CD0002506FE /* ViewModels */ = {
+			isa = PBXGroup;
+			children = (
+				743B5E3E260F0B2200504DAA /* ProductViewModel.swift */,
+				740AC62F260F9D9D002506FE /* ReviewViewModel.swift */,
+			);
+			path = ViewModels;
+			sourceTree = "<group>";
+		};
 		743B5E57260F221D00504DAA /* Models */ = {
 			isa = PBXGroup;
 			children = (
@@ -134,6 +151,7 @@
 		743B5E5E260F224100504DAA /* Services */ = {
 			isa = PBXGroup;
 			children = (
+				743B5E79260F4F3C00504DAA /* ReviewService.swift */,
 				743B5E34260EFB2800504DAA /* ProductService.swift */,
 			);
 			path = Services;
@@ -147,6 +165,7 @@
 				74426C0D260DF72600300386 /* Main.storyboard */,
 				74426C10260DF72A00300386 /* Assets.xcassets */,
 				74426C12260DF72A00300386 /* LaunchScreen.storyboard */,
+				743B5E81260F522000504DAA /* Extensions.swift */,
 			);
 			path = Resources;
 			sourceTree = "<group>";
@@ -156,6 +175,7 @@
 			children = (
 				74426C40260E752400300386 /* ProductDetailViewController.swift */,
 				74426C0B260DF72600300386 /* ProductsViewController.swift */,
+				743B5E8E260F5AE600504DAA /* ReviewViewController.swift */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -195,13 +215,13 @@
 		74426C06260DF72600300386 /* AdidasCodingChallenge */ = {
 			isa = PBXGroup;
 			children = (
+				740AC62E260F9CD0002506FE /* ViewModels */,
 				743B5E61260F229300504DAA /* Views */,
 				743B5E60260F227000504DAA /* ViewControllers */,
 				743B5E5F260F225B00504DAA /* Resources */,
 				743B5E5E260F224100504DAA /* Services */,
 				743B5E57260F221D00504DAA /* Models */,
 				74426C15260DF72A00300386 /* Info.plist */,
-				743B5E3E260F0B2200504DAA /* ProductViewModel.swift */,
 				743B5E48260F17CF00504DAA /* ProductServiceAdapter.swift */,
 			);
 			path = AdidasCodingChallenge;
@@ -474,6 +494,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				74426C0C260DF72600300386 /* ProductsViewController.swift in Sources */,
+				743B5E7A260F4F3C00504DAA /* ReviewService.swift in Sources */,
+				743B5E8F260F5AE700504DAA /* ReviewViewController.swift in Sources */,
 				743B5E6B260F24CD00504DAA /* ReviewTableViewCell.swift in Sources */,
 				743B5E44260F0FDB00504DAA /* Review.swift in Sources */,
 				743B5E2B260E768100504DAA /* ProductsTableViewCell.swift in Sources */,
@@ -485,6 +507,8 @@
 				743B5E3F260F0B2200504DAA /* ProductViewModel.swift in Sources */,
 				743B5E35260EFB2800504DAA /* ProductService.swift in Sources */,
 				743B5E30260E76C900504DAA /* Product.swift in Sources */,
+				740AC630260F9D9D002506FE /* ReviewViewModel.swift in Sources */,
+				743B5E82260F522000504DAA /* Extensions.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

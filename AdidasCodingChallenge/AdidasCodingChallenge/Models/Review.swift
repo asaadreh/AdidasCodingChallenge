@@ -8,6 +8,8 @@
 import Foundation
 
 struct Review: Codable {
-    var rating: Int
-    var text: String
+    var rating: Int?
+    var text: String?
+    var locale: String?
+    var productId: String
 }

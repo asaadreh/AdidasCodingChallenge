@@ -10,15 +10,29 @@ import UIKit
 class ProductsViewController: UIViewController {
 
     @IBOutlet weak var productsTableView: UITableView!
+    let searchController = UISearchController(searchResultsController: nil)
+
+    var filteredProducts: [ProductViewModel] = []
+    var isSearchBarEmpty: Bool {
+      return searchController.searchBar.text?.isEmpty ?? true
+    }
+    var isFiltering: Bool {
+      return searchController.isActive && !isSearchBarEmpty
+    }
     
     var viewModel = [ProductViewModel]()
-    
     var service : ProductServiceProtocol?
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         setUp()
+        
+        searchController.searchResultsUpdater = self
+        searchController.obscuresBackgroundDuringPresentation = false
+        searchController.searchBar.placeholder = "Search Products"
+        navigationItem.searchController = searchController
+        definesPresentationContext = true
     }
     
     func setUp() {
@@ -56,21 +70,58 @@ class ProductsViewController: UIViewController {
             print(error)
         }
     }
+    
+    func filterContentForSearchText(_ searchText: String) {
+        filteredProducts = viewModel.filter { (vm: ProductViewModel) -> Bool in
+            return (vm.product.name?.lowercased().contains(searchText.lowercased()) ?? false || vm.product.description?.lowercased().contains(searchText.lowercased()) ?? false)
+      }
+      
+      productsTableView.reloadData()
+    }
+
 }
+
+extension ProductsViewController: UISearchResultsUpdating {
+  func updateSearchResults(for searchController: UISearchController) {
+    
+    let searchBar = searchController.searchBar
+    filterContentForSearchText(searchBar.text!)
+
+  }
+}
+
+
 
 extension ProductsViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        if isFiltering {
+           return filteredProducts.count
+         }
         return viewModel.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "ProductsTableViewCell") as! ProductsTableViewCell
-        cell.configure(product: viewModel[indexPath.row].product)
+        let product : ProductViewModel
+        if isFiltering {
+            product = filteredProducts[indexPath.row]
+          } else {
+            product = viewModel[indexPath.row]
+          }
+        
+        cell.configure(product: product.product)
         return cell
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
-        viewModel[indexPath.row].selection()
+        let productVm: ProductViewModel
+        if isFiltering {
+          productVm = filteredProducts[indexPath.row]
+        } else {
+          productVm = viewModel[indexPath.row]
+        }
+
+        productVm.selection()
     }
 }

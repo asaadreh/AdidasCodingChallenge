@@ -8,6 +8,7 @@ target 'AdidasCodingChallenge' do
   # Pods for AdidasCodingChallenge
 
   pod 'Kingfisher'
+  pod 'Cosmos'
 
   target 'AdidasCodingChallengeTests' do
     inherit! :search_paths

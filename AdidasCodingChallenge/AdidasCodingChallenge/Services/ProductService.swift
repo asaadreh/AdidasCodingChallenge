@@ -32,7 +32,7 @@ protocol ProductServiceProtocol {
 class ProductService : ProductServiceProtocol {
     
     private let baseURL = "http://localhost:3001"
-    let defaultSession = URLSession(configuration: .default)
+    let defaultSession = URLSession(configuration: .ephemeral)
     var dataTask: URLSessionDataTask?
     private enum EndPoint : String {
         case productList = "/product"
@@ -49,6 +49,7 @@ class ProductService : ProductServiceProtocol {
             completion(.failure(.internalError))
             return
         }
+        
         dataTask = defaultSession.dataTask(with: url) { [weak self] data, response, error in
             defer {
                 self?.dataTask = nil

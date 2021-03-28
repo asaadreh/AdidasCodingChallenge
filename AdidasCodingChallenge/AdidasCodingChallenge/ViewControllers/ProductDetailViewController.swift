@@ -11,14 +11,54 @@ class ProductDetailViewController: UIViewController {
 
     @IBOutlet weak var productDetailTable: UITableView!
     var product = Product()
+    var service : ReviewService!
+    var viewModel : ReviewViewModel!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
-       
+        
+        service = ReviewService()
+        if let id = product.id {
+            viewModel = ReviewViewModel(productId: id, service: service)
+            viewModel.getReviews { (res, err)  in
+                if res{
+                    DispatchQueue.main.async {
+                        self.productDetailTable.reloadSections(IndexSet(integer: 1), with: .automatic)
+                    }
+                }
+                else{
+                    print(err)
+                }
+            }
+        }
+        
     }
-
+    
+    
+    
+    @IBAction func addReviewTapped(_ sender: UIButton) {
+        guard let sb = storyboard else {
+            return
+        }
+        
+        let vc = sb.instantiateViewController(identifier: "ReviewViewController") as! ReviewViewController
+        vc.productId = product.id
+        vc.delegate = self
+        present(vc, animated: true)
+        
+    }
 }
+
+
+extension ProductDetailViewController: ReviewDelegate{
+    func reviewSent(review: Review) {
+        DispatchQueue.main.async { [weak self] in
+            self?.product.reviews?.append(review)
+            self?.productDetailTable.reloadSections(IndexSet(integer: 1), with: .automatic)
+        }
+    }
+}
+
 
 extension ProductDetailViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -26,7 +66,7 @@ extension ProductDetailViewController: UITableViewDelegate, UITableViewDataSourc
             return 1
         }
         else{
-            return product.reviews!.count
+            return viewModel.reviews.count
         }
     }
     
@@ -50,7 +90,7 @@ extension ProductDetailViewController: UITableViewDelegate, UITableViewDataSourc
         }
         else {
             let cell = tableView.dequeueReusableCell(withIdentifier: "ReviewTableViewCell") as! ReviewTableViewCell
-            cell.configure(review: product.reviews![indexPath.row])
+            cell.configure(review: viewModel.reviews[indexPath.row])
             return cell
         }
     }
