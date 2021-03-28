@@ -36,8 +36,6 @@ class ReviewViewController: UIViewController, UITextViewDelegate {
         reviewAlertView.layer.borderColor = UIColor.lightGray.cgColor
         reviewAlertView.layer.borderWidth = 1.0
         reviewTextView.delegate = self
-        
-        
     }
 
 
@@ -50,15 +48,9 @@ class ReviewViewController: UIViewController, UITextViewDelegate {
             // show error
             return
         }
-        
-        
-        
         let rating = Int(ratingView.rating)
-        
-        print(reviewText,rating)
-        
         let review = Review(rating: rating, text: reviewText, locale: locale, productId: id)
-        
+
         service?.submitReview(review: review, completion: { [weak self] (res) in
             switch res{
             case .success(let review):
@@ -67,6 +59,10 @@ class ReviewViewController: UIViewController, UITextViewDelegate {
             case .failure(let error):
                 print(error)
             }
+            DispatchQueue.main.async {
+                self?.dismiss(animated: true)
+            }
+            
         })
     }
     

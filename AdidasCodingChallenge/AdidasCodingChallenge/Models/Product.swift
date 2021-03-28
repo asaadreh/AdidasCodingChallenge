@@ -15,4 +15,19 @@ struct Product: Codable {
     var imgUrl: String?
     var price: Float?
     var reviews : [Review]?
+    
+    
+    func getOverallRating() -> String {
+        guard let reviews = self.reviews,
+            reviews.count != 0 else
+        {
+            return "0"
+        }
+        let allRatings = reviews.map({$0.rating})
+        let sum = allRatings.reduce(0) { (var1, var2)  in
+            return var1 + (var2 ?? 0)
+        }
+        
+        return String(sum/allRatings.count)
+    }
 }

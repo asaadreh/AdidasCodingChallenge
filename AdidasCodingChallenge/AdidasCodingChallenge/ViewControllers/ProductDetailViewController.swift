@@ -27,7 +27,7 @@ class ProductDetailViewController: UIViewController {
                     }
                 }
                 else{
-                    print(err)
+                    print(err?.localizedDescription)
                 }
             }
         }
@@ -52,9 +52,14 @@ class ProductDetailViewController: UIViewController {
 
 extension ProductDetailViewController: ReviewDelegate{
     func reviewSent(review: Review) {
+        
+        
         DispatchQueue.main.async { [weak self] in
-            self?.product.reviews?.append(review)
-            self?.productDetailTable.reloadSections(IndexSet(integer: 1), with: .automatic)
+            guard let strongSelf = self else {
+                return
+            }
+            strongSelf.viewModel.reviews.append(review)
+            strongSelf.productDetailTable.insertRows(at: [IndexPath(row: strongSelf.viewModel.reviews.count-1, section: 1)], with: .automatic)
         }
     }
 }

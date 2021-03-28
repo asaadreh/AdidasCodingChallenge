@@ -13,6 +13,7 @@ class ProductsTableViewCell: UITableViewCell {
     @IBOutlet weak var productPrice: UILabel!
     @IBOutlet weak var productDescription: UILabel!
     @IBOutlet weak var productName: UILabel!
+    @IBOutlet weak var productRating: UILabel!
     
     
     override func awakeFromNib() {
@@ -26,6 +27,7 @@ class ProductsTableViewCell: UITableViewCell {
         productDescription.text = product.description
         productName.text = product.name
         productPrice.text = String(product.price ?? 0.0)
+        productRating.text = product.getOverallRating()
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {
@@ -33,4 +35,10 @@ class ProductsTableViewCell: UITableViewCell {
 
     }
 
+}
+
+
+extension Sequence where Element: AdditiveArithmetic {
+    /// Returns the total sum of all elements in the sequence
+    func sum() -> Element { reduce(.zero, +) }
 }

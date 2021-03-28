@@ -16,3 +16,5 @@ struct ProductViewModel {
         self.selection = selection
     }
 }
+
+

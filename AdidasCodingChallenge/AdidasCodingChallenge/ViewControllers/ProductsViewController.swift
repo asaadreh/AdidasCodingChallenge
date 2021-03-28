@@ -26,6 +26,8 @@ class ProductsViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        title = "Adidas Products"
+        
         setUp()
         
         searchController.searchResultsUpdater = self
