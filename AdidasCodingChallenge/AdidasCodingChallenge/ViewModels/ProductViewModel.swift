@@ -7,14 +7,26 @@
 
 import Foundation
 
-struct ProductViewModel {
-    var product: Product
-    var selection : () -> Void
+class ProductViewModel {
+    var products: [Product] = []
+    var service : ProductServiceProtocol
     
-    init(product: Product, selection: @escaping () -> Void) {
-        self.product = product
-        self.selection = selection
+    init(service: ProductServiceProtocol) {
+        self.service = service
     }
+    
+    func getProducts(completion: @escaping (Bool)->Void) {
+        service.getProducts(completion: { [self] (res) in
+            switch res {
+            case .success(let products):
+                self.products = products
+                completion(true)
+            case .failure(let error):
+                print(error)
+            }
+        })
+    }
+    
 }
 
 

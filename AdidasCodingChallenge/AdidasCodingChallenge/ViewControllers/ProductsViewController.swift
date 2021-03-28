@@ -12,7 +12,7 @@ class ProductsViewController: UIViewController {
     @IBOutlet weak var productsTableView: UITableView!
     let searchController = UISearchController(searchResultsController: nil)
 
-    var filteredProducts: [ProductViewModel] = []
+    var filteredProducts: [Product] = []
     var isSearchBarEmpty: Bool {
       return searchController.searchBar.text?.isEmpty ?? true
     }
@@ -20,8 +20,8 @@ class ProductsViewController: UIViewController {
       return searchController.isActive && !isSearchBarEmpty
     }
     
-    var viewModel = [ProductViewModel]()
-    var service : ProductServiceProtocol?
+    var viewModel : ProductViewModel!
+    var service : ProductServiceProtocol!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -39,17 +39,17 @@ class ProductsViewController: UIViewController {
     
     func setUp() {
         service = ProductService()
-        service?.getProducts(completion: { [self] (res) in
-            DispatchQueue.main.async {
-                handleResult(res.map({ products in
-                    products.map({product in
-                        ProductViewModel(product: product, selection: {
-                            self.select(product: product)
-                        })
-                    })
-                }))
+        viewModel = ProductViewModel(service: service)
+        viewModel.getProducts { (done) in
+            if done{
+                DispatchQueue.main.async { [weak self] in
+                    guard let strongSelf = self else {
+                        return
+                    }
+                    strongSelf.productsTableView.reloadData()
+                }
             }
-        })
+        }
     }
     
     func select(product: Product) {
@@ -63,19 +63,19 @@ class ProductsViewController: UIViewController {
         
     }
     
-    func handleResult(_ result: Result<[ProductViewModel],APIError>) {
-        switch result {
-        case .success(let vm):
-            self.viewModel = vm
-            productsTableView.reloadData()
-        case .failure(let error):
-            print(error)
-        }
-    }
+//    func handleResult(_ result: Result<[ProductViewModel],APIError>) {
+//        switch result {
+//        case .success(let vm):
+//            self.viewModel = vm
+//            productsTableView.reloadData()
+//        case .failure(let error):
+//            print(error)
+//        }
+//    }
     
     func filterContentForSearchText(_ searchText: String) {
-        filteredProducts = viewModel.filter { (vm: ProductViewModel) -> Bool in
-            return (vm.product.name?.lowercased().contains(searchText.lowercased()) ?? false || vm.product.description?.lowercased().contains(searchText.lowercased()) ?? false)
+        filteredProducts = viewModel.products.filter { (product: Product) -> Bool in
+            return (product.name?.lowercased().contains(searchText.lowercased()) ?? false || product.description?.lowercased().contains(searchText.lowercased()) ?? false)
       }
       
       productsTableView.reloadData()
@@ -99,31 +99,31 @@ extension ProductsViewController: UITableViewDelegate, UITableViewDataSource {
         if isFiltering {
            return filteredProducts.count
          }
-        return viewModel.count
+        return viewModel.products.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "ProductsTableViewCell") as! ProductsTableViewCell
-        let product : ProductViewModel
+        let product : Product
         if isFiltering {
             product = filteredProducts[indexPath.row]
           } else {
-            product = viewModel[indexPath.row]
+            product = viewModel.products[indexPath.row]
           }
         
-        cell.configure(product: product.product)
+        cell.configure(product: product)
         return cell
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
-        let productVm: ProductViewModel
+        let product: Product
         if isFiltering {
-          productVm = filteredProducts[indexPath.row]
+            product = filteredProducts[indexPath.row]
         } else {
-          productVm = viewModel[indexPath.row]
+            product = viewModel.products[indexPath.row]
         }
 
-        productVm.selection()
+       select(product: product)
     }
 }
