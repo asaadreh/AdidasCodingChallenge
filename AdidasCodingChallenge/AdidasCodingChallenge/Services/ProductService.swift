@@ -16,10 +16,12 @@ enum APIError: Error {
 extension APIError: LocalizedError {
     public var errorDescription: String? {
         switch self {
-        case .serverError:
-            return "Server Error: "
-        default:
-            return "Some Error: "
+        case .serverError(let desc):
+            return "Server Error: " + desc
+        case .internalError:
+            return "Internal Error: "
+        case .parsingError:
+            return "Parsing Error: "
         }
     }
 }
@@ -56,6 +58,7 @@ class ProductService : ProductServiceProtocol {
             }
             
             if let error = error {
+                print(error.localizedDescription)
                 completion(.failure(.serverError(error.localizedDescription)))
             } else if let data = data {
                 

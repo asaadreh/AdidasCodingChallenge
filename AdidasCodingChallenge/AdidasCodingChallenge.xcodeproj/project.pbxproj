@@ -10,6 +10,9 @@
 		2D4ECDDB926F932B9092CCAC /* Pods_AdidasCodingChallengeTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 75BCA5EA369DBEAE23416DC4 /* Pods_AdidasCodingChallengeTests.framework */; };
 		397C6795862C0C1208D3D95C /* Pods_AdidasCodingChallenge_AdidasCodingChallengeUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A71D8BA6B172E76CA47BBD3A /* Pods_AdidasCodingChallenge_AdidasCodingChallengeUITests.framework */; };
 		740AC630260F9D9D002506FE /* ReviewViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 740AC62F260F9D9D002506FE /* ReviewViewModel.swift */; };
+		740AC6382610A41F002506FE /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 740AC6372610A41F002506FE /* BaseViewController.swift */; };
+		740AC6452610C001002506FE /* ProductServiceMockAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 740AC63D2610BBBE002506FE /* ProductServiceMockAPI.swift */; };
+		740AC65B2610CA3D002506FE /* ReviewServiceMockAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 740AC65A2610CA3D002506FE /* ReviewServiceMockAPI.swift */; };
 		743B5E2B260E768100504DAA /* ProductsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 743B5E2A260E768100504DAA /* ProductsTableViewCell.swift */; };
 		743B5E30260E76C900504DAA /* Product.swift in Sources */ = {isa = PBXBuildFile; fileRef = 743B5E2F260E76C900504DAA /* Product.swift */; };
 		743B5E35260EFB2800504DAA /* ProductService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 743B5E34260EFB2800504DAA /* ProductService.swift */; };
@@ -53,6 +56,9 @@
 /* Begin PBXFileReference section */
 		50534A56DA75E2BE8134EB34 /* Pods_AdidasCodingChallenge.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_AdidasCodingChallenge.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		740AC62F260F9D9D002506FE /* ReviewViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewViewModel.swift; sourceTree = "<group>"; };
+		740AC6372610A41F002506FE /* BaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
+		740AC63D2610BBBE002506FE /* ProductServiceMockAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductServiceMockAPI.swift; sourceTree = "<group>"; };
+		740AC65A2610CA3D002506FE /* ReviewServiceMockAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewServiceMockAPI.swift; sourceTree = "<group>"; };
 		743B5E2A260E768100504DAA /* ProductsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductsTableViewCell.swift; sourceTree = "<group>"; };
 		743B5E2F260E76C900504DAA /* Product.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Product.swift; sourceTree = "<group>"; };
 		743B5E34260EFB2800504DAA /* ProductService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductService.swift; sourceTree = "<group>"; };
@@ -139,6 +145,15 @@
 			path = ViewModels;
 			sourceTree = "<group>";
 		};
+		740AC63C2610BBAF002506FE /* Mocks */ = {
+			isa = PBXGroup;
+			children = (
+				740AC63D2610BBBE002506FE /* ProductServiceMockAPI.swift */,
+				740AC65A2610CA3D002506FE /* ReviewServiceMockAPI.swift */,
+			);
+			path = Mocks;
+			sourceTree = "<group>";
+		};
 		743B5E57260F221D00504DAA /* Models */ = {
 			isa = PBXGroup;
 			children = (
@@ -176,6 +191,7 @@
 				74426C40260E752400300386 /* ProductDetailViewController.swift */,
 				74426C0B260DF72600300386 /* ProductsViewController.swift */,
 				743B5E8E260F5AE600504DAA /* ReviewViewController.swift */,
+				740AC6372610A41F002506FE /* BaseViewController.swift */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -230,6 +246,7 @@
 		74426C1D260DF72B00300386 /* AdidasCodingChallengeTests */ = {
 			isa = PBXGroup;
 			children = (
+				740AC63C2610BBAF002506FE /* Mocks */,
 				74426C1E260DF72B00300386 /* AdidasCodingChallengeTests.swift */,
 				74426C20260DF72B00300386 /* Info.plist */,
 			);
@@ -500,6 +517,7 @@
 				743B5E44260F0FDB00504DAA /* Review.swift in Sources */,
 				743B5E2B260E768100504DAA /* ProductsTableViewCell.swift in Sources */,
 				74426C41260E752400300386 /* ProductDetailViewController.swift in Sources */,
+				740AC6382610A41F002506FE /* BaseViewController.swift in Sources */,
 				74426C08260DF72600300386 /* AppDelegate.swift in Sources */,
 				74426C0A260DF72600300386 /* SceneDelegate.swift in Sources */,
 				743B5E63260F22B800504DAA /* ProductDetailTableViewCell.swift in Sources */,
@@ -516,6 +534,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				740AC6452610C001002506FE /* ProductServiceMockAPI.swift in Sources */,
+				740AC65B2610CA3D002506FE /* ReviewServiceMockAPI.swift in Sources */,
 				74426C1F260DF72B00300386 /* AdidasCodingChallengeTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

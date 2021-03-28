@@ -9,6 +9,7 @@ import Foundation
 
 protocol ReviewServiceProtocol {
     func submitReview(review: Review,completion: @escaping ((Result<Review, APIError>) -> Void))
+    func getReviews(productId:String, completion: @escaping ((Result<[Review],APIError>) -> Void))
 }
 
 class ReviewService : ReviewServiceProtocol {
@@ -46,11 +47,7 @@ class ReviewService : ReviewServiceProtocol {
             if let error = error {
                 completion(.failure(.serverError(error.localizedDescription)))
             } else if let data = data {
-//                if let dataString = String(data: data, encoding: .utf8) {
-//
-//                    print("Response data string:\n \(dataString)")
-//
-//                }
+
                 let decoder = JSONDecoder()
                 do {
                     let review = try decoder.decode([Review].self, from: data)
@@ -73,15 +70,8 @@ class ReviewService : ReviewServiceProtocol {
             completion(.failure(.internalError))
             return
         }
-        print(url.absoluteURL)
         
         var request = URLRequest(url: url)
-        if let dataString = String(data: review.asJson!, encoding: .utf8) {
-
-            print("Request data string:\n \(dataString)")
-
-        }
-    
         request.httpBody = review.asJson
         request.setValue("application/json", forHTTPHeaderField: "Content-Type")
         request.httpMethod = method.rawValue

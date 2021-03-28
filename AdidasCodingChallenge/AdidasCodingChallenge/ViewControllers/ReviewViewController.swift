@@ -13,15 +13,16 @@ protocol ReviewDelegate {
     func reviewSent(review: Review)
 }
 
-class ReviewViewController: UIViewController, UITextViewDelegate {
+class ReviewViewController: BaseViewController, UITextViewDelegate {
 
     @IBOutlet weak var ratingView: CosmosView!
     @IBOutlet weak var reviewTextView: UITextView!
     @IBOutlet weak var reviewAlertView: UIView!
     var delegate : ReviewDelegate!
     
-    var service: ReviewService?
+    var service: ReviewServiceProtocol!
     var productId: String?
+    var viewModel : ReviewViewModel!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -36,11 +37,12 @@ class ReviewViewController: UIViewController, UITextViewDelegate {
         reviewAlertView.layer.borderColor = UIColor.lightGray.cgColor
         reviewAlertView.layer.borderWidth = 1.0
         reviewTextView.delegate = self
+        ratingView.rating = 2
     }
 
 
     @IBAction func doneButtonTapped(_ sender: Any) {
-        service = ReviewService()
+        
         
         guard let reviewText = reviewTextView.text,
               let locale = NSLocale.current.languageCode,
@@ -50,20 +52,24 @@ class ReviewViewController: UIViewController, UITextViewDelegate {
         }
         let rating = Int(ratingView.rating)
         let review = Review(rating: rating, text: reviewText, locale: locale, productId: id)
-
-        service?.submitReview(review: review, completion: { [weak self] (res) in
-            switch res{
-            case .success(let review):
-                
-                self?.delegate.reviewSent(review: review)
-            case .failure(let error):
-                print(error)
-            }
+        
+        service = ReviewService()
+        viewModel = ReviewViewModel(productId: id, service: service)
+        viewModel.submitReview(review: review) { (success,review,err) in
             DispatchQueue.main.async {
-                self?.dismiss(animated: true)
+                if success {
+                    if let review = review {
+                        self.delegate.reviewSent(review: review)
+                    }
+                    self.dismiss(animated: true)
+                }
+                else {
+                    if let err = err {
+                        self.presentAlert(title: "Error", msg: err, handler: nil)
+                    }
+                }
             }
-            
-        })
+        }
     }
     
     @IBAction func cancelButtonTapped(_ sender: Any) {

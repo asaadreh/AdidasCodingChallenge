@@ -7,15 +7,16 @@
 
 import UIKit
 
-class ProductsViewController: UIViewController {
+class ProductsViewController: BaseViewController {
 
     @IBOutlet weak var productsTableView: UITableView!
     let searchController = UISearchController(searchResultsController: nil)
-
+    var refreshControl = UIRefreshControl()
     var filteredProducts: [Product] = []
     var isSearchBarEmpty: Bool {
       return searchController.searchBar.text?.isEmpty ?? true
     }
+    
     var isFiltering: Bool {
       return searchController.isActive && !isSearchBarEmpty
     }
@@ -23,13 +24,18 @@ class ProductsViewController: UIViewController {
     var viewModel : ProductViewModel!
     var service : ProductServiceProtocol!
     
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
         title = "Adidas Products"
+        service = ProductService()
+        viewModel = ProductViewModel(service: service)
         
-        setUp()
-        
+        getProducts()
+        refreshControl.attributedTitle = NSAttributedString(string: "Pull to refresh")
+        refreshControl.addTarget(self, action: #selector(self.refresh(_:)), for: .valueChanged)
+        productsTableView.addSubview(refreshControl)
         searchController.searchResultsUpdater = self
         searchController.obscuresBackgroundDuringPresentation = false
         searchController.searchBar.placeholder = "Search Products"
@@ -37,21 +43,38 @@ class ProductsViewController: UIViewController {
         definesPresentationContext = true
     }
     
-    func setUp() {
-        service = ProductService()
-        viewModel = ProductViewModel(service: service)
-        viewModel.getProducts { (done) in
-            if done{
-                DispatchQueue.main.async { [weak self] in
-                    guard let strongSelf = self else {
-                        return
-                    }
+    @objc func refresh(_ sender: AnyObject) {
+        getProducts()
+    }
+    
+    func getProducts() {
+        
+        viewModel.getProducts { (done, err) in
+            DispatchQueue.main.async { [weak self] in
+                guard let strongSelf = self else {
+                    return
+                }
+                strongSelf.refreshControl.endRefreshing()
+                if done{
+                    
                     strongSelf.productsTableView.reloadData()
+                    if strongSelf.viewModel.products.isEmpty {
+                        strongSelf.productsTableView.tableFooterView = strongSelf.createErrorView(msg: "No Products have been listed yet.")
+                    }
+                }
+                else{
+                    if let err = err {
+                        DispatchQueue.main.async { [weak self] in
+                            guard let strongSelf = self else {
+                                return
+                            }
+                            strongSelf.productsTableView.tableFooterView = strongSelf.createErrorView(msg: err)
+                        }
+                    }
                 }
             }
         }
     }
-    
     func select(product: Product) {
         
         guard let sb = storyboard else {
@@ -62,16 +85,6 @@ class ProductsViewController: UIViewController {
         self.navigationController?.pushViewController(vc, animated: true)
         
     }
-    
-//    func handleResult(_ result: Result<[ProductViewModel],APIError>) {
-//        switch result {
-//        case .success(let vm):
-//            self.viewModel = vm
-//            productsTableView.reloadData()
-//        case .failure(let error):
-//            print(error)
-//        }
-//    }
     
     func filterContentForSearchText(_ searchText: String) {
         filteredProducts = viewModel.products.filter { (product: Product) -> Bool in
@@ -84,12 +97,13 @@ class ProductsViewController: UIViewController {
 }
 
 extension ProductsViewController: UISearchResultsUpdating {
-  func updateSearchResults(for searchController: UISearchController) {
-    
-    let searchBar = searchController.searchBar
-    filterContentForSearchText(searchBar.text!)
-
-  }
+    func updateSearchResults(for searchController: UISearchController) {
+        
+        let searchBar = searchController.searchBar
+        if let text = searchBar.text {
+            filterContentForSearchText(text)
+        }
+    }
 }
 
 

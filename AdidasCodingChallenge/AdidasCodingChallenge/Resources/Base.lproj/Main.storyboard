@@ -128,14 +128,15 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Z6K-W5-bHR">
-                                <rect key="frame" x="0.0" y="832" width="414" height="30"/>
+                                <rect key="frame" x="0.0" y="826" width="414" height="36"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
                                 <state key="normal" title="Add Review"/>
                                 <connections>
                                     <action selector="addReviewTapped:" destination="Upw-uf-V38" eventType="touchUpInside" id="Gpc-Wc-Yw5"/>
                                 </connections>
                             </button>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="18" sectionFooterHeight="18" translatesAutoresizingMaskIntoConstraints="NO" id="Lot-lI-irM">
-                                <rect key="frame" x="0.0" y="44" width="414" height="780"/>
+                                <rect key="frame" x="0.0" y="44" width="414" height="774"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="ProductDetailTableViewCell" rowHeight="339" id="rad-gy-K7a" customClass="ProductDetailTableViewCell" customModule="AdidasCodingChallenge" customModuleProvider="target">
@@ -201,21 +202,38 @@
                                             <rect key="frame" x="0.0" y="0.0" width="414" height="52.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Review" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Oqr-W5-AKQ">
-                                                    <rect key="frame" x="20" y="11" width="374" height="21"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Review" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Oqr-W5-AKQ">
+                                                    <rect key="frame" x="20" y="11" width="281" height="21"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0.0" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lOq-CM-wYF">
+                                                    <rect key="frame" x="370" y="11" width="24" height="21"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="star.fill" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="0mM-2R-g9b">
+                                                    <rect key="frame" x="340" y="9.5" width="22" height="22"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" secondItem="0mM-2R-g9b" secondAttribute="height" multiplier="1:1" id="Gzn-BJ-MiE"/>
+                                                    </constraints>
+                                                </imageView>
                                             </subviews>
                                             <constraints>
+                                                <constraint firstItem="lOq-CM-wYF" firstAttribute="leading" secondItem="0mM-2R-g9b" secondAttribute="trailing" constant="8" symbolic="YES" id="JSN-Ml-AbD"/>
                                                 <constraint firstAttribute="bottom" secondItem="Oqr-W5-AKQ" secondAttribute="bottom" constant="20.5" id="JtP-kq-w0o"/>
                                                 <constraint firstItem="Oqr-W5-AKQ" firstAttribute="top" secondItem="YOX-fk-d1v" secondAttribute="topMargin" id="UOj-Ww-ITU"/>
-                                                <constraint firstItem="Oqr-W5-AKQ" firstAttribute="trailing" secondItem="YOX-fk-d1v" secondAttribute="trailingMargin" id="f1M-jv-3bX"/>
+                                                <constraint firstAttribute="trailingMargin" secondItem="lOq-CM-wYF" secondAttribute="trailing" id="d14-yU-Nxv"/>
+                                                <constraint firstItem="0mM-2R-g9b" firstAttribute="width" secondItem="0mM-2R-g9b" secondAttribute="height" multiplier="1:1" id="ohR-hB-DqQ"/>
+                                                <constraint firstItem="0mM-2R-g9b" firstAttribute="bottom" secondItem="lOq-CM-wYF" secondAttribute="bottom" id="q8T-Wr-nfG"/>
                                                 <constraint firstItem="Oqr-W5-AKQ" firstAttribute="leading" secondItem="YOX-fk-d1v" secondAttribute="leadingMargin" id="sl8-Sl-PwW"/>
+                                                <constraint firstItem="lOq-CM-wYF" firstAttribute="top" secondItem="YOX-fk-d1v" secondAttribute="topMargin" id="vds-25-N4A"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                         <connections>
+                                            <outlet property="rating" destination="lOq-CM-wYF" id="iBd-mM-CSH"/>
                                             <outlet property="reviewDescription" destination="Oqr-W5-AKQ" id="gZz-g1-CER"/>
                                         </connections>
                                     </tableViewCell>

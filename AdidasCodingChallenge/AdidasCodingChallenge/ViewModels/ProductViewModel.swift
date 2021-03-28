@@ -15,14 +15,14 @@ class ProductViewModel {
         self.service = service
     }
     
-    func getProducts(completion: @escaping (Bool)->Void) {
+    func getProducts(completion: @escaping (Bool, String?)->Void) {
         service.getProducts(completion: { [self] (res) in
             switch res {
             case .success(let products):
                 self.products = products
-                completion(true)
+                completion(true, nil)
             case .failure(let error):
-                print(error)
+                completion(false, error.localizedDescription)
             }
         })
     }

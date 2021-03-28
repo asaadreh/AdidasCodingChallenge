@@ -10,6 +10,7 @@ import UIKit
 class ReviewTableViewCell: UITableViewCell {
 
     @IBOutlet weak var reviewDescription: UILabel!
+    @IBOutlet weak var rating: UILabel!
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
@@ -23,6 +24,7 @@ class ReviewTableViewCell: UITableViewCell {
     
     func configure(review: Review) {
         reviewDescription.text = review.text
+        rating.text = String(review.rating ?? 0)
     }
 
 }

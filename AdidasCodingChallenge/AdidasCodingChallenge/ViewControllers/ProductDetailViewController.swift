@@ -7,7 +7,7 @@
 
 import UIKit
 
-class ProductDetailViewController: UIViewController {
+class ProductDetailViewController: BaseViewController {
 
     @IBOutlet weak var productDetailTable: UITableView!
     var product = Product()
@@ -21,13 +21,22 @@ class ProductDetailViewController: UIViewController {
         if let id = product.id {
             viewModel = ReviewViewModel(productId: id, service: service)
             viewModel.getReviews { (res, err)  in
-                if res{
-                    DispatchQueue.main.async {
-                        self.productDetailTable.reloadSections(IndexSet(integer: 1), with: .automatic)
+                DispatchQueue.main.async { [weak self] in
+                    guard let strongSelf = self else {
+                        return
                     }
-                }
-                else{
-                    print(err?.localizedDescription)
+                    
+                    if res{
+                        strongSelf.productDetailTable.reloadSections(IndexSet(integer: 1), with: .automatic)
+                        if strongSelf.viewModel.reviews.isEmpty {
+                            strongSelf.productDetailTable.tableFooterView = strongSelf.createErrorView(msg: "No reviews have been listed yet.")
+                        }
+                    }
+                    else{
+                        if let err = err {
+                            strongSelf.productDetailTable.tableFooterView = strongSelf.createErrorView(msg: err)
+                        }
+                    }
                 }
             }
         }
@@ -53,13 +62,13 @@ class ProductDetailViewController: UIViewController {
 extension ProductDetailViewController: ReviewDelegate{
     func reviewSent(review: Review) {
         
-        
         DispatchQueue.main.async { [weak self] in
             guard let strongSelf = self else {
                 return
             }
             strongSelf.viewModel.reviews.append(review)
             strongSelf.productDetailTable.insertRows(at: [IndexPath(row: strongSelf.viewModel.reviews.count-1, section: 1)], with: .automatic)
+            strongSelf.productDetailTable.tableFooterView = nil
         }
     }
 }
