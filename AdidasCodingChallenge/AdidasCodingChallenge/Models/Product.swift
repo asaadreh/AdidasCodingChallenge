@@ -15,6 +15,7 @@ struct Product: Codable {
     var imgUrl: String?
     var price: Float?
     var reviews : [Review]?
+    var currency: String?
     
     
     func getOverallRating() -> String {

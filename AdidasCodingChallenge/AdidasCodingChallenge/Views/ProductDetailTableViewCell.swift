@@ -31,7 +31,7 @@ class ProductDetailTableViewCell: UITableViewCell {
         productImage.kf.setImage(with: URL(string: product.imgUrl ?? ""))
         productDescription.text = product.description
         productName.text = product.name
-        productPrice.text = String(product.price ?? 0.0)
+        productPrice.text = "\(product.currency ?? "") \(String(product.price ?? 0.0))"
     }
     
 }
