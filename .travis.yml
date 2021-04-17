@@ -3,7 +3,7 @@ language: swift
 os: osx
 xcode_workspace: AdidasCodingChallenge.xcworkspace
 xcode_scheme: AdidasCodingChallenge
-xcode_destination: platform=iOS Simulator,OS=14,name=iPhone 8
+xcode_destination: platform=iOS Simulator,OS=14.4,name=iPhone 8
 before_install:
 - cd AdidasCodingChallenge
 - pod install
